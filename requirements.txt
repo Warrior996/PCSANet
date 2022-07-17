@@ -1,0 +1,15 @@
+matplotlib
+numpy
+opencv-python==4.5.4.58
+pandas==1.1.5
+Pillow==8.4.0
+pydicom==2.2.2
+scikit-image==0.17.2
+scikit-learn 
+seaborn
+SimpleITK==2.1.1
+torch==1.7.1
+torchcam==0.3.1
+torchsummary==1.5.1
+torchvision==0.8.2
+tqdm
