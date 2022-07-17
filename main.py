@@ -8,7 +8,6 @@ from train import train
 from test import test
 from utils.logging import open_log
 
-
 def arg_parse():
     parser = argparse.ArgumentParser(description='ChestX-ray14')
     parser.add_argument('-n', '--name', type=str, default="train", help='train, resume, test')
@@ -25,7 +24,7 @@ def arg_parse():
     parser.add_argument('--output_dir', type=str, default="./results/")
     parser.add_argument('--num_works', type=int, default=8, help='')
     parser.add_argument('--num_epochs', type=int, default=120, help='')
-    parser.add_argument('-b', '--batch_size', type=int, default=128, help='')
+    parser.add_argument('-b', '--batch_size', type=int, default=64, help='')
     parser.add_argument('--lr', type=float, default=1e-3, help='')
 
     args = parser.parse_args()
@@ -51,69 +50,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-#---------------------- on q
-path_image = "../../../data/NIH-ChestX-ray14/images"
-
-diseases = ['Atelectasis', 'Cardiomegaly', 'Effusion', 'Infiltration', 'Mass',
-            'Nodule', 'Pneumonia', 'Pneumothorax', 'Consolidation', 'Edema', 
-            'Emphysema', 'Fibrosis', 'Pleural_Thickening', 'Hernia']
-
-
-# def main():
-
-#     MODE = "train"  # Select "train" or "test", "Resume", "plot", "Threshold", "plot15"
-#     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-
-#     train_df = pd.read_csv(train_df_path)
-#     train_df_size = len(train_df)
-#     print("Train_df size", train_df_size)
-
-#     test_df = pd.read_csv(test_df_path)
-#     test_df_size = len(test_df)
-#     print("test_df size", test_df_size)
-
-#     val_df = pd.read_csv(val_df_path)
-#     val_df_size = len(val_df)
-#     print("val_df size", val_df_size)
-
-#     if MODE == "train":
-
-#        CriterionType = 'BCELoss' # select 'BCELoss'
-#        LR = 0.5e-3
-      
-#        model, best_epoch = ModelTrain()
-       
-#     #    PlotLearnignCurve()
-
-#     if MODE == "test":
-#         val_df = pd.read_csv(val_df_path)
-#         test_df = pd.read_csv(test_df_path)
-
-#         CheckPointData = torch.load('results_resnet/checkpoint')
-#         model = CheckPointData['model']
-        
-
-#         model_seg = UNet(n_channels=3, n_classes=1).cuda()    # initialize model
-#         CKPT_PATH = config['CKPT_PATH'] + 'best_unet.pkl'
-#         if os.path.exists(CKPT_PATH):
-#             checkpoint = torch.load(CKPT_PATH)
-#             model_seg.load_state_dict(checkpoint)      # strict=False
-#             print("=> loaded well-trained unet model checkpoint: "+ CKPT_PATH)
-#         model_seg.eval()
-
-#         make_pred_multilabel(model, model_seg, test_df, val_df, path_image, device)
-
-
-#     if MODE == "Resume":
-#         ModelType = "Resume"  # select 'ResNet50','densenet','ResNet34', 'ResNet18'
-#         CriterionType = 'BCELoss'
-#         nnIsTrained = False
-#         LR = 1e-3
-
-#         model, best_epoch = ModelTrain(train_df_path, val_df_path, PATH_TO_IMAGES_DIR, config['ModelType'],
-#                                       CriterionType, device, LR)
-
-        # PlotLearnignCurve()
-
